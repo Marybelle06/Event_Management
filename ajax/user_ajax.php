@@ -192,24 +192,28 @@
 
 
 
+//gi change nako ang width sa user eventscore table ug 1110px
+//then gi change pd nako ang position sa left ug 100px
+//diri ko ga edit
 // Ajax for displaying the teamScore table and search ASC
-     if (isset($_POST['displayTeamScoreASC']) && $_POST['displayTeamScoreASC'] == true) {
-        // Check if searchValue is set and not empty
-        $value = isset($_POST['searchValue']) ? $_POST['searchValue'] : NULL;
+if (isset($_POST['displayTeamScoreASC']) && $_POST['displayTeamScoreASC'] == true) {
+    // Check if searchValue is set and not empty
+    $value = isset($_POST['searchValue']) ? $_POST['searchValue'] : NULL;
+
+    echo '<div style="max-height: 400px; max-width: 1110px; font-size: 11px; position: relative; left: 100px; top: 130px; overflow-y: auto; " class="table">';
+    $table = '<table class="table table-bordered table-hover">
+            <thead class="table-dark" id="table-header" style="position: sticky; top: 0; background-color: #343a40; color: white;">
+            <tr> 
+            <th scope="col" class="text-center align-middle">Event No.</th>
+            <th scope="col" class="text-center align-middle" onclick = "DESC()">Date</th>
+            <th scope="col" class="text-center align-middle">Match</th>
+            <th scope="col" class="text-center align-middle">Location</th>
+            <th scope="col" class="text-center align-middle">Winner</th>
+            <th scope="col" class="text-center align-middle">Action</th>
+            </tr>
+            </thead>
+            <tbody>';
     
-        echo '<div style="max-height: 400px; max-width: 1000px; font-size: 11px; position: relative; left: 220px; top: 130px; overflow-y: auto; " class="table">';
-        $table = '<table class="table table-bordered table-hover">
-                <thead class="table-dark" id="table-header" style="position: sticky; top: 0; background-color: #343a40; color: white;">
-                <tr> 
-                <th scope="col" class="text-center align-middle">Event No.</th>
-                <th scope="col" class="text-center align-middle" onclick = "DESC()">Date</th>
-                <th scope="col" class="text-center align-middle">Match</th>
-                <th scope="col" class="text-center align-middle">Location</th>
-                <th scope="col" class="text-center align-middle">Winner</th>
-                <th scope="col" class="text-center align-middle">Action</th>
-                </tr>
-                </thead>
-                <tbody>';
     
         if (!empty($value)) {        
             $sql = "SELECT * FROM log_info WHERE DATE = '$value' ORDER BY DATE ASC";
